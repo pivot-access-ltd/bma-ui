@@ -62,6 +62,14 @@ const externalLoginURL = (state: RootState): string | null =>
   state.status.externalLoginURL;
 
 /**
+ * Get the oidc auth url.
+ * @param {RootState} state - The redux state.
+ * @returns {StatusState["oidcAuthURL"]} The oidc auth url.
+ */
+const oidcAuthURL = (state: RootState): string | null =>
+  state.status.oidcAuthURL;
+
+/**
  * Whether there are currently no MAAS users.
  * @param {RootState} state - The redux state.
  * @returns {StatusState["noUsers"]}StatusState users in MAAS.
@@ -77,6 +85,7 @@ const status = {
   error,
   externalAuthURL,
   externalLoginURL,
+  oidcAuthURL,
   noUsers,
 };
 

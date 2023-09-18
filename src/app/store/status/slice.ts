@@ -13,6 +13,7 @@ const statusSlice = createSlice({
     authenticationError: null,
     externalAuthURL: null,
     externalLoginURL: null,
+    oidcAuthURL: null,
     connected: false,
     connecting: false,
     noUsers: false,
@@ -35,12 +36,14 @@ const statusSlice = createSlice({
       action: PayloadAction<{
         authenticated: StatusState["authenticated"];
         external_auth_url: StatusState["externalAuthURL"];
+        oidc_auth_url: StatusState["oidcAuthURL"];
         no_users: StatusState["noUsers"];
       }>
     ) => {
       state.authenticating = false;
       state.authenticated = action.payload.authenticated;
       state.externalAuthURL = action.payload.external_auth_url;
+      state.oidcAuthURL = action.payload.oidc_auth_url;
       state.noUsers = action.payload.no_users;
     },
     login: {

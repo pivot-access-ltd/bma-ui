@@ -9,5 +9,6 @@ export type StatusState = {
   error: APIError;
   externalAuthURL: string | null;
   externalLoginURL: string | null;
+  oidcAuthURL: string | null;
   noUsers: boolean;
 };
