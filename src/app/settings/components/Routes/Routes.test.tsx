@@ -205,7 +205,7 @@ describe("Routes", () => {
         state,
         route: path,
       });
-      expect(document.title).toBe(`${title} | MAAS`);
+      expect(document.title).toBe(`${title} | BMA`);
     });
   });
 
