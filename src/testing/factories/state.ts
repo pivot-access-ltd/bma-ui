@@ -519,6 +519,7 @@ export const statusState = define<StatusState>({
   error: null,
   externalAuthURL: "http://example.com/auth",
   externalLoginURL: "http://example.com/login",
+  oidcAuthURL: "http://oidc.com/login",
   noUsers: false,
 });
 

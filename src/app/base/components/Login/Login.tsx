@@ -36,6 +36,7 @@ export enum Labels {
   Password = "Password",
   Submit = "Login",
   Username = "Username",
+  NoOIDC = "OIDC has not been configured yet",
 }
 
 export enum TestIds {
@@ -48,10 +49,8 @@ export const Login = (): JSX.Element => {
   const authenticated = useSelector(statusSelectors.authenticated);
   const authenticating = useSelector(statusSelectors.authenticating);
   const externalAuthURL = useSelector(statusSelectors.externalAuthURL);
-  const externalLoginURL = useSelector(statusSelectors.externalLoginURL);
   const authenticationError = useSelector(statusSelectors.authenticationError);
-
-  const noUsers = useSelector(statusSelectors.noUsers);
+  const oidcAuthURL = useSelector(statusSelectors.oidcAuthURL);
 
   useWindowTitle("Login");
 
@@ -77,10 +76,10 @@ export const Login = (): JSX.Element => {
               </Notification>
             )
           ) : null}
-          {noUsers && !externalAuthURL ? (
-            <Card title={Labels.NoUsers}>
-              <p>Use the following command to create one:</p>
-              <Code copyable>sudo maas createadmin</Code>
+          {!oidcAuthURL ? (
+            <Card title={Labels.NoOIDC}>
+              <p>Use the following command to configure OIDC:</p>
+              <Code copyable>sudo maas config-oidc</Code>
               <Button
                 className="u-no-margin--bottom"
                 onClick={() => dispatch(statusActions.checkAuthenticated())}
@@ -96,14 +95,13 @@ export const Login = (): JSX.Element => {
               >
                 Login
               </h1>
-              {externalAuthURL ? (
+              {oidcAuthURL ? (
                 <Button
                   appearance="positive"
                   className="login__external"
                   element="a"
-                  href={externalLoginURL}
+                  href={oidcAuthURL}
                   rel="noopener noreferrer"
-                  target="_blank"
                 >
                   {Labels.ExternalLoginButton}
                 </Button>
